@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-hx&55a$^oi4&7lguctih5d)ot=93*8166h@+=_zj$p949-hp^!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 AUTH_USER_MODEL = 'restaurant_user.RestaurantUser'
 
 # Application definition

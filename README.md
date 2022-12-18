@@ -15,6 +15,9 @@ ROLE Users and permissions:
     0 - 'employee' - no access to create users, create order
     1 - 'restaurant' (superuser) - create employee, create menu
 
+we can't create admin(restaurant) from API, we should use createsuperuser:
+
+
 how to get Token Obtain Pair:
 Go to link, enter your name/passsword:
 http://127.0.0.1:3000/api/v1/token/
@@ -26,3 +29,7 @@ GET all week menu (permission: Admin or Restaurant):
 GET today menu (permission: IsAuthenticated):
 **/api/v1/menu_for_today/**
 
+start app in docker:
+$ docker compose up --build & 
+$ docker exec -it app_restaurant bash
+$ docker exec -it app_restaurant python manage.py createsuperuser
