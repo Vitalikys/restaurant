@@ -16,6 +16,13 @@ ROLE Users and permissions:
     1 - 'restaurant' (superuser) - create employee, create menu
 
 how to get Token Obtain Pair:
-go to link, enter your name/passsword:
+Go to link, enter your name/passsword:
 http://127.0.0.1:3000/api/v1/token/
 get access token, enter it to header-> Authorization: Bearer HEADER.PAYLOAD:DATA/VERIFY SIGNATURE:
+
+GET all week menu (permission: Admin or Restaurant):
+**/api/v1/menu_all_week/**
+
+GET today menu (permission: IsAuthenticated):
+**/api/v1/menu_for_today/**
+

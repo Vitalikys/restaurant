@@ -30,5 +30,7 @@ class MenuSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('user_id',)
+        fields = '__all__'
+        read_only_fields = ('id', 'user', 'day_menu', 'created_at', 'ip')
+
 

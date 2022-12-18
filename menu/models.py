@@ -20,7 +20,7 @@ class Menu(models.Model):
     create menu  for each day (only restaurant access)
     """
     id = models.AutoField(primary_key=True)
-    week_day = models.IntegerField(choices=WEEKDAY_CHOICE, default=0)
+    week_day = models.IntegerField(choices=WEEKDAY_CHOICE, default=0, unique=True)
     main_dish = models.CharField(max_length=22, blank=True)
     salads = models.CharField(max_length=22, blank=True)
     drinks = models.CharField(max_length=22, blank=True)
