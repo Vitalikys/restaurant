@@ -1,0 +1,35 @@
+version: '3.8'
+# для зєднання декількох контейнерів tyt
+services:
+  app_restaurant:
+    container_name: app_restaurant
+    build: .
+    command: python manage.py runserver 0.0.0.0:3000
+    volumes:
+      - ./:/usr/src/
+    ports:
+      - "8000:3000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+#      - DB
+    depends_on:
+      - db  # залежить від postgres
+#      - postgres_data # залежить від postgres_data
+  db:
+#    container_name: db_restaurant
+    image: postgres:14.5
+    volumes:
+#      - host_mashina : container
+      - postgres_data:/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db_restaurant
+    ports:
+      - "5432:5432"
+    restart: always
+
+volumes:
+  postgres_data:

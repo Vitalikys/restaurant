@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Restaurant</title>
+</head>
+<body>
+<div>
+    <a href="https://documenter.getpostman.com/view/23239505/2s8YzZPJoS" target="_blank">Postman Documentation</a>
+    <br>
+    <a href="https://github.com/Vitalikys/restaurant">Github</a>
+</div>
+
+<div>
+    <ul> API FUNCTIONALITY:
+        <li> Authentication</li>
+        <li> Creating restaurant</li>
+        <li> Uploading menu for restaurant (There should be a menu for each day)</li>
+        <li> Creating employee</li>
+        <li> Getting current day menu</li>
+        <li> Getting results for the current day</li>
+    </ul>
+
+    <ul>ROLE Users and permissions:
+        <li> 0 - 'employee' - no access to create users, create order</li>
+        <li> 1 - 'restaurant' (superuser) - create employee, create menu</li>
+    </ul>
+
+    <ul> Short description:
+        <li> how to get Token Obtain Pair (enter your name/passsword):
+            url/api/v1/token/
+        </li>
+        <li>GET all week menu (permission: Admin or Restaurant):
+            **/api/v1/menu_all_week/**
+        </li>
+        <li>get access token, enter it to header-> Authorization: Bearer HEADER.PAYLOAD:DATA/VERIFY SIGNATURE:</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

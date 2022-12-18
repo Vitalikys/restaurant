@@ -1,6 +1,5 @@
 import datetime
 
-from django.shortcuts import render
 from rest_framework import viewsets, generics, versioning
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 
