@@ -17,14 +17,18 @@ class RastaurantVersioning(versioning.AcceptHeaderVersioning):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    """List All users, Create one user AllowAny. GET, POST"""
     queryset = RestaurantUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
+    versioning_class = RastaurantVersioning
 
 
 class MenuTodayListView(generics.ListAPIView):
+    """Get current day menu. Employee could make order """
     serializer_class = MenuSerializer
     permission_classes = (IsAuthenticated,)
+    versioning_class = RastaurantVersioning
 
     def get_queryset(self):
         current_day = datetime.datetime.now()
@@ -55,16 +59,13 @@ class OrderCreateView(generics.CreateAPIView):
     versioning_class = RastaurantVersioning
     # versioning_class = versioning.QueryParameterVersioning
     serializer_class = OrderSerializer
-    queryset = Order.objects.all()
+    queryset = Order.objects.filter(day_menu=datetime.datetime.today().strftime('%Y-%m-%d'))
     permission_classes = (IsAuthenticated,)
 
-    # class OrderCreateView(viewsets.ModelViewSet):
-    #  ''' partial_update,  '''
-    #     serializer_class = OrderSerializer
-    #     queryset = Order.objects.all()
-    #     permission_classes = (IsAuthenticated,)
-
     def perform_create(self, serializer):
+        if Order.objects.filter(user=self.request.user):
+            print('order exist')
+            return {'message': 'Current date order already exist'}
         print('my user id is:', self.request.user.id)
         print('request version: ', self.request.version)
         serializer.save(ip=get_client_ip(self.request),
@@ -78,9 +79,14 @@ class OrderListView(generics.ListAPIView):
     versioning_class = RastaurantVersioning
 
 
+class OrderCurrentDayListView(OrderListView):
+    """Get all orders for current day."""
+    queryset = Order.objects.filter(day_menu=datetime.datetime.today().strftime('%Y-%m-%d'))
+
+
 class OrderDestroyView(generics.DestroyAPIView):
+    """Delete Order"""
     queryset = Order.objects.all()
     permission_classes = (IsAdminUser,)
     serializer_class = OrderSerializer
     versioning_class = RastaurantVersioning
-

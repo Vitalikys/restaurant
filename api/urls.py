@@ -22,6 +22,7 @@ urlpatterns = [
     path('menu_all_week/', MenuAllWeekListView.as_view()),
     path('order/create/', OrderCreateView.as_view()),
     path('order/list/', OrderListView.as_view()),
+    path('order/list_current_day/', OrderCurrentDayListView.as_view()),
     path('order/delete/<int:pk>/', OrderDestroyView.as_view()),
 
 ]
