@@ -3,6 +3,9 @@ djangorestframework==3.14
 djangorestframework-simplejwt==5.2.2
 psycopg2-binary>=2.9.5
 
+# for documentation Api:
+django-rest-swagger==2.2.0
+
 # for nice code:
 flake8==6.0.0
 

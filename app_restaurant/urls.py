@@ -15,13 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from rest_framework_swagger.views import get_swagger_view
+import rest_framework_swagger
 from app_restaurant.views import index
+
+schema_view = get_swagger_view(title='Restaurant Docs API')
 
 urlpatterns = [
     path('', index, name='index_page'),
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
     # path('api/v2/', include('api.urls')),
-    path('api-auth/', include('rest_framework.urls')),  # to use the browsable API
+
+    # to use the browsable API: api-auth/login;  api-auth//logout
+    path('api-auth/', include('rest_framework.urls')),
+    path('swagger/', schema_view),
+
 ]

@@ -15,5 +15,8 @@ COPY ./requirements.txt .
 
 RUN pip install -r requirements.txt
 COPY . .
-RUN python manage.py makemigrations
-RUN #python manage.py migrate
+RUN # python manage.py makemigrations
+RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "vim"]
+RUN ["apt-get", "install", "-y", "nano"]
+#RUN ['python3', 'manage.py', 'migrate']
