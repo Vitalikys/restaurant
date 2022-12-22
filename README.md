@@ -33,3 +33,7 @@ start app in docker:
 $ docker compose up --build & 
 $ docker exec -it app_restaurant bash
 $ docker exec -it app_restaurant python manage.py createsuperuser
+
+
+run tests:
+$ pytest Tests/tests.py
