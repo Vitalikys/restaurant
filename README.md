@@ -37,3 +37,5 @@ $ docker exec -it app_restaurant python manage.py createsuperuser
 
 run tests:
 $ pytest Tests/tests.py
+
+add flake8, RUN: flake8 path/to/code/to/check.py

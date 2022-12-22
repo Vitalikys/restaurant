@@ -59,7 +59,8 @@ class OrderCreateView(generics.CreateAPIView):
     versioning_class = RastaurantVersioning
     # versioning_class = versioning.QueryParameterVersioning
     serializer_class = OrderSerializer
-    queryset = Order.objects.filter(day_menu=datetime.datetime.today().strftime('%Y-%m-%d'))
+    queryset = Order.objects.filter(
+        day_menu=datetime.datetime.today().strftime('%Y-%m-%d'))
     permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
@@ -81,7 +82,8 @@ class OrderListView(generics.ListAPIView):
 
 class OrderCurrentDayListView(OrderListView):
     """Get all orders for current day."""
-    queryset = Order.objects.filter(day_menu=datetime.datetime.today().strftime('%Y-%m-%d'))
+    queryset = Order.objects.filter(
+        day_menu=datetime.datetime.today().strftime('%Y-%m-%d'))
 
 
 class OrderDestroyView(generics.DestroyAPIView):

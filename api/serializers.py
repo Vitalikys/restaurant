@@ -32,5 +32,3 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
         read_only_fields = ('id', 'user', 'day_menu', 'created_at', 'ip')
-
-
