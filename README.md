@@ -1,5 +1,6 @@
 # restautant_menu
-http://78.27.202.55:8000/  <-deployed
+http://78.27.236.114:8000/  <-deployed
+
 http://127.0.0.1:3000/api-auth/login/
 
 
