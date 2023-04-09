@@ -1,7 +1,3 @@
-from django.test import TestCase
-
-# import unittest # included by default in Python
-import pytest
 import requests
 
 # URL deployed on my server
