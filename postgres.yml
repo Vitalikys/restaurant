@@ -2,6 +2,9 @@
 - name: Install PostgreSQL and configure databases
   hosts: db_pg
   become: yes
+  collections:
+   - name: community.postgresql
+  
 # https://docs.ansible.com/ansible/2.8/modules/postgresql_user_module.html
 #  vars:
 #    PG_VERSION: 
