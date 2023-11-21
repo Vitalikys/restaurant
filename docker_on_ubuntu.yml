@@ -1,6 +1,6 @@
 ---
 - name: Install Docker
-  hosts: all
+  hosts: db_pg
   become: true
   vars:
     apt_key_url: https://download.docker.com/linux/ubuntu/gpg
@@ -40,17 +40,3 @@
         name: docker
         state: present
 
-    - name: Add jenkins user to the docker grop
-      user:
-        name: jenkins
-        groups: docker
-        append: yes
-      notify: 
-        - Restart Jenkins
-        
-  handlers:        
-    - name: Restart Jenkins
-      systemd:
-        name: jenkins
-        state: restarted
-        enabled: yes
