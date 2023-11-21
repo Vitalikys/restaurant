@@ -2,7 +2,7 @@
 - name: Install PostgreSQL and configure databases
   hosts: db_pg
   become: yes
-
+# https://docs.ansible.com/ansible/2.8/modules/postgresql_user_module.html
 #  vars:
 #    PG_VERSION: 
 #    PG_USER: 
@@ -41,10 +41,10 @@
         state: started
 
     - name: Create PostgreSQL user
-      become_user: postgres
       postgresql_user:
         db: postgres
         name: "{{ PG_USER }}"
+        priv: "ALL/products:ALL"
         password: "{{ PG_PASSWORD }}"
         encrypted: yes
 
