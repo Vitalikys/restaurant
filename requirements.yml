@@ -1,0 +1,3 @@
+collections:
+  - name: community.postgresql
+    source: https://github.com/ansible-collections/community.postgresql.git
