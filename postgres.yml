@@ -1,6 +1,6 @@
 ---
 - name: Install PostgreSQL and configure databases
-  hosts: db_pg
+  hosts: Databases
   become: yes
   collections: ["community.postgresql"]
 
