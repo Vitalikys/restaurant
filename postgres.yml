@@ -75,16 +75,21 @@
         name: "{{ PG_DB }}"
         owner: "{{ PG_USER }}"
         
-    - name: Grant privileges on a PostgreSQL database
+    - name: Grant all privileges on a PostgreSQL database to a user
       become_user: postgres
-      community.postgresql.postgresql_privs:
-        db: postgres          
-        role: "{{ PG_USER }}"
-        obj: 
-          - "{{ PG_DB }}"
-          - schedule_test
-        privs: ALL
-        state: present  
+      shell: "psql -c 'GRANT ALL PRIVILEGES ON DATABASE {{ PG_DB }} TO {{ PG_USER }};'"
+
+        
+#    - name: Grant privileges on a PostgreSQL database
+#      become_user: postgres
+#      community.postgresql.postgresql_privs:
+#        db: postgres          
+#        role: "{{ PG_USER }}"
+#        obj: 
+#          - "{{ PG_DB }}"
+#          - schedule_test
+#        privs: ALL
+#        state: present  
         
 #    - name: Restore data from dump file
 #      command: psql -U "{{ PG_USER }}" -d "{{ PG_DB }}" -f /home/ubuntu/2023.dump
