@@ -59,7 +59,7 @@
 
     - name: Install Python Package
       pip: 
-        name: psycopg2
+        name: psycopg2-binary
         state: present
 
     - name: Create PostgreSQL user, set password, grant privs
