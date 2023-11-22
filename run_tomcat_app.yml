@@ -1,23 +1,16 @@
 ---
-- name: Run Application in Docker
+- name: Install Docker
   hosts: 
+#    - db_pg
     - "{{ HOST_IP }}"
   become: true
-  vars: 
-    APP_IMAGE: tomcat
-  
+  vars:
+    apt_key_url: https://download.docker.com/linux/ubuntu/gpg
+
   tasks:
     - name: Ping server - Check Connection
       ping: 
-      
-    - name: Pull Docker image
-      docker_image:
-        name: tomcat:latest
-        source: pull
-        
-    - name: Get Git commit hash
-      command: git rev-parse HEAD
-      register: commit_hash
+
 
 #    - name: Build Docker image with Git commit hash tag
 #      docker_image:
