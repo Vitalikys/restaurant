@@ -62,14 +62,14 @@
         name: psycopg2-binary
         state: present
         
-    - name: Connect to database, create django user, and grant access to database and products table
-      community.postgresql.postgresql_user:
-        db: postgres
-        name: django
-        password: ceec4eif7ya
-        priv: "CONNECT/products:ALL"
-        expires: "Jan 31 2020"
-
+    - name: Create new temp database)
+      become_user: "{{ PG_USER }}"
+      register: create_db
+  # community.postgresql.postgresql_db:
+      postgresql_db:
+        name: test_db
+        owner: postgres
+        
     - name: Create PostgreSQL user, set password, grant privs
       become_user: postgres
       postgresql_user:
