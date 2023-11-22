@@ -81,6 +81,7 @@
           - "{{ PG_DB }}"
           - schedule_test 
         role: "{{ PG_USER }}"
+        objs: ALL_IN_SCHEMA
         privs: "ALL"
         state: present  
         
