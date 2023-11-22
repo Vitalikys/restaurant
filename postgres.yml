@@ -63,13 +63,13 @@
         state: present
 
     - name: Create PostgreSQL user, set password, grant privs
-      become_user: postgres
+#      become_user: postgres
       postgresql_user:
  #       db: postgres
         name: "{{ PG_USER }}"
         role_attr_flags: SUPERUSER # CREATEDB,
         password: "{{ PG_PASSWORD }}"
-        encrypted: yes
+#        encrypted: yes
 
     - name: Create new database for APP (schedule)
       become_user: "{{ PG_USER }}"
