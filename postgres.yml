@@ -78,12 +78,12 @@
     - name: Grant privileges on a PostgreSQL database
       become_user: postgres
       community.postgresql.postgresql_privs:
-        database: 
-          - "{{ PG_DB }}"
-          - schedule_test 
+        db: postgres          
         role: "{{ PG_USER }}"
-        objs: ALL_IN_SCHEMA
-        privs: "ALL"
+        obj: 
+          - "{{ PG_DB }}"
+          - schedule_test
+        privs: ALL
         state: present  
         
 #    - name: Restore data from dump file
