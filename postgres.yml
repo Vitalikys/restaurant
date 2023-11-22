@@ -73,7 +73,7 @@
     - name: Create new temp database
       become_user: postgres
       community.postgresql.postgresql_db:
-        name: test_db
+        name: schrdule_test
         owner: postgres
         
     - name: Create PostgreSQL user, set password, grant privs
@@ -87,7 +87,7 @@
 
     - name: Create new database for APP (schedule)
       become_user: "{{ PG_USER }}"
-      register: create_db
+     # register: create_db
      # community.postgresql.postgresql_db:
       community.postgresql.postgresql_db:
         name: "{{ PG_DB }}"
