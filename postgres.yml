@@ -46,8 +46,8 @@
     - name: Install Python Pip
       apt: name={{ item }} update_cache=yes force_apt_get=yes cache_valid_time=3600
       with_items:
-      - python-pip
-      - python3-pip
+      # - python-pip
+        - python3-pip
       become: true
 
     - name: Install Python Package
