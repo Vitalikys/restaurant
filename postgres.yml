@@ -78,6 +78,10 @@
     - name: Grant all privileges on a PostgreSQL database to a user
       become_user: postgres
       shell: "psql -c 'GRANT ALL PRIVILEGES ON DATABASE {{ PG_DB }} TO {{ PG_USER }};'"
+        
+    - name: Grant all privileges on a PostgreSQL Test database to a user
+      become_user: postgres
+      shell: "psql -c 'GRANT ALL PRIVILEGES ON DATABASE schedule_test TO {{ PG_USER }};'"
 
         
 #    - name: Grant privileges on a PostgreSQL database
