@@ -1,3 +1,7 @@
-collections:
-  - name: community.postgresql
-    source: https://github.com/ansible-collections/community.postgresql.git
+- src: git@github.com:ansible-collections/community.postgresql.git
+  scm: git
+#  version: "2.3.4"
+
+# collections:
+#  - name: community.postgresql
+#    source: https://github.com/ansible-collections/community.postgresql.git
