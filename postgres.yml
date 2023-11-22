@@ -76,6 +76,7 @@
         owner: "{{ PG_USER }}"
         
     - name: Grant privileges on a PostgreSQL database
+      become_user: postgres
       community.postgresql.postgresql_privs:
         database: 
           - "{{ PG_DB }}"
