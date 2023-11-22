@@ -1,6 +1,7 @@
 ---
 - name: Run Application in Docker
-  hosts: your_host
+  hosts: 
+    - "{{ HOST_IP }}"
   
   tasks:
     - name: Pull Docker image
