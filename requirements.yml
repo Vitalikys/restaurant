@@ -3,3 +3,8 @@ collections:
     src: git@github.com:ansible-collections/community.postgresql.git
     scm: git
 #   version: "2.3.4"
+
+  - name: community.docker
+    source: https://galaxy.ansible.com/community/docker
+    version: 3.4.11
+
