@@ -2,12 +2,15 @@
 - name: Run Application in Docker
   hosts: 
     - "{{ HOST_IP }}"
+  become: true
   
   tasks:
+    - name: Ping server - Check Connection
+      ping: 
+      
     - name: Pull Docker image
       docker_image:
         name: tomcat:latest
- #       name: schedule_image:latest
         source: pull
         
     - name: Get Git commit hash
