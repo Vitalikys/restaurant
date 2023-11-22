@@ -4,15 +4,6 @@
   become: yes
   collections: ["community.postgresql"]
 
-  
-# https://docs.ansible.com/ansible/2.8/modules/postgresql_user_module.html
-#  vars:
-#    PG_VERSION: 
-#    PG_USER: 
-#    PG_PASSWORD: 
-#    PG_DB:
-#    PG_DB_TEST:
-
   tasks:
     - name: Create directory for pgdg
       file:
@@ -33,9 +24,11 @@
       apt:
         update_cache: yes
 
-    - name: Install PostgreSQL
+    - name: Install PostgreSQL & acl
       apt:
-        name: "postgresql-{{ PG_VERSION }}"
+        name: 
+          - "postgresql-{{ PG_VERSION }}"
+          - acl
         state: present
         
     - name: Enable PostgreSQL at startup (systemd)
@@ -51,7 +44,7 @@
         state: started
         
     - name: Install Python Pip
-      apt: name=python3-pip update_cache=yes force_apt_get=yes cache_valid_time=3600
+      apt: name={{ item }} update_cache=yes force_apt_get=yes cache_valid_time=3600
       with_items:
       - python-pip
       - python3-pip
@@ -61,34 +54,37 @@
       pip: 
         name: psycopg2-binary
         state: present
-        
-#    - name: Create new temp database)
-#      become_user: "{{ PG_USER }}"
-#      register: create_db
-  # community.postgresql.postgresql_db:
-#      postgresql_db:
-#        name: test_db
-#        owner: postgres
-        
-    - name: Create new temp database
-      become_user: postgres
-      community.postgresql.postgresql_db:
-        name: schrdule_test
-        owner: postgres
-        
+                
     - name: Create PostgreSQL user, set password, grant privs
       become_user: postgres
       community.postgresql.postgresql_user:
- #       db: postgres
         name: "{{ PG_USER }}"
-        role_attr_flags: SUPERUSER
+        role_attr_flags:  CREATEDB # SUPERUSER,
         password: "{{ PG_PASSWORD }}"
 #        encrypted: yes
 
+    - name: Create new test database
+      become_user: postgres
+      community.postgresql.postgresql_db:
+        name: schedule_test
+        owner: "{{ PG_USER }}"
+
     - name: Create new database for APP (schedule)
       become_user: postgres
-     # register: create_db
-     # community.postgresql.postgresql_db:
       community.postgresql.postgresql_db:
         name: "{{ PG_DB }}"
         owner: "{{ PG_USER }}"
+        
+    - name: Grant privileges on a PostgreSQL database
+      community.postgresql.postgresql_privs:
+        database: 
+          - "{{ PG_DB }}"
+          - schedule_test 
+        role: "{{ PG_USER }}"
+        privs: "ALL"
+        state: present  
+        
+#    - name: Restore data from dump file
+#      command: psql -U "{{ PG_USER }}" -d "{{ PG_DB }}" -f /home/ubuntu/2023.dump
+
+    
