@@ -86,7 +86,7 @@
 #        encrypted: yes
 
     - name: Create new database for APP (schedule)
-      become_user: "{{ PG_USER }}"
+      become_user: postgres
      # register: create_db
      # community.postgresql.postgresql_db:
       community.postgresql.postgresql_db:
