@@ -1,0 +1,21 @@
+---
+- name: Run Application in Docker
+  hosts: your_host
+  
+  tasks:
+    - name: Pull Docker image
+      docker_image:
+        name: tomcat:latest
+ #       name: schedule_image:latest
+        source: pull
+        
+    - name: Get Git commit hash
+      command: git rev-parse HEAD
+      register: commit_hash
+
+#    - name: Build Docker image with Git commit hash tag
+#      docker_image:
+#        build:
+#          path: /path/to/your/app
+#        name: your_image_name:{{ commit_hash.stdout | trim }}
+#        pull: no  # build from the Dockerfile
