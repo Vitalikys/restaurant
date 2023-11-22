@@ -4,7 +4,7 @@
   become: yes
 
   tasks:
-    - name: Install prerequisites for Redis
+    - name: Install needed apps for Redis
       apt:
         name: "{{ item }}"
         state: present
@@ -12,6 +12,11 @@
         - lsb-release
         - curl
         - gnupg
+        
+    - name: Create sources.list.d directory
+      file:
+        path: /etc/apt/sources.list.d
+        state: directory
 
     - name: Add Redis GPG key
       shell: "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg"
