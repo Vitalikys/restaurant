@@ -37,22 +37,31 @@
       apt:
         name: "postgresql-{{ PG_VERSION }}"
         state: present
-
+        
+    - name: Enable PostgreSQL at startup (systemd)
+      systemd:
+        name: postgresql
+        enabled: yes
+      when:
+        - ansible_service_mgr == "systemd"
+        
     - name: Start PostgreSQL service
       service:
         name: postgresql
         state: started
 
     - name: Create PostgreSQL user
-      community.postgresql.postgresql_user:
+      postgresql_user:
         db: postgres
         name: "{{ PG_USER }}"
         priv: "ALL/products:ALL"
         password: "{{ PG_PASSWORD }}"
         encrypted: yes
 
-    - name: Create main database
-      become_user: postgres
-      community.postgresql.postgresql_db:
+    - name: Create new database for APP (schedule)
+      become_user: "{{ PG_USER }}"
+      register: create_db
+     # community.postgresql.postgresql_db:
+      postgresql_db:
         name: "{{ PG_DB }}"
         owner: "{{ PG_USER }}"
