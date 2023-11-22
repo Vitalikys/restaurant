@@ -63,11 +63,11 @@
         state: present
 
     - name: Create PostgreSQL user, set password, grant privs
-#      become_user: postgres
+      become_user: postgres
       postgresql_user:
  #       db: postgres
         name: "{{ PG_USER }}"
-        role_attr_flags: SUPERUSER # CREATEDB,
+        role_attr_flags: SUPERUSER
         password: "{{ PG_PASSWORD }}"
 #        encrypted: yes
 
