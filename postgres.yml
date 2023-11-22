@@ -49,6 +49,18 @@
       service:
         name: postgresql
         state: started
+        
+    - name: Install Python Pip
+      apt: name=python3-pip update_cache=yes force_apt_get=yes cache_valid_time=3600
+      with_items:
+      - python-pip
+      - python3-pip
+      become: true
+
+    - name: Install Python Package
+      pip: 
+        name: psycopg2
+        state: present
 
     - name: Create PostgreSQL user, set password, grant privs
       become_user: postgres
