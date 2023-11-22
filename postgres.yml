@@ -62,17 +62,23 @@
         name: psycopg2-binary
         state: present
         
-    - name: Create new temp database)
-      become_user: "{{ PG_USER }}"
-      register: create_db
+#    - name: Create new temp database)
+#      become_user: "{{ PG_USER }}"
+#      register: create_db
   # community.postgresql.postgresql_db:
-      postgresql_db:
+#      postgresql_db:
+#        name: test_db
+#        owner: postgres
+        
+    - name: Create new temp database
+      become_user: postgres
+      community.postgresql.postgresql_db:
         name: test_db
         owner: postgres
         
     - name: Create PostgreSQL user, set password, grant privs
       become_user: postgres
-      postgresql_user:
+      community.postgresql.postgresql_user:
  #       db: postgres
         name: "{{ PG_USER }}"
         role_attr_flags: SUPERUSER
@@ -83,6 +89,6 @@
       become_user: "{{ PG_USER }}"
       register: create_db
      # community.postgresql.postgresql_db:
-      postgresql_db:
+      community.postgresql.postgresql_db:
         name: "{{ PG_DB }}"
         owner: "{{ PG_USER }}"
