@@ -2,7 +2,7 @@
 - name: Install Docker
   hosts: 
 #    - db_pg
-    - {{ HOST_IP }}
+    - "{{ HOST_IP }}"
   become: true
   vars:
     apt_key_url: https://download.docker.com/linux/ubuntu/gpg
