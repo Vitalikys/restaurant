@@ -3,6 +3,8 @@
   hosts: 
     - "{{ HOST_IP }}"
   become: true
+  vars: 
+    APP_IMAGE: tomcat
   
   tasks:
     - name: Ping server - Check Connection
