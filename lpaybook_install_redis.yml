@@ -18,12 +18,16 @@
         path: /etc/apt/sources.list.d
         state: directory
 
-   # - name: Add Redis GPG key
-    - rpm_key:
-        state: present
-        key: https://packages.redis.io/gpg
-# shell: "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg"
-
+    - name: Add an GPG  key to a specific keyring file
+      ansible.builtin.apt_key:
+        url: https://packages.redis.io/gpg 
+        keyring: /usr/share/keyrings/redis-archive-keyring.gpg 
+    
+#   - name: Set up Redis
+#     shell: |
+#       curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+#       echo "deb
+        
     - name: Add Redis repository to sources.list
       apt_repository:
         repo: "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb {{ ansible_distribution_release }} main"
@@ -37,3 +41,27 @@
       apt:
         name: redis
         state: present
+      notify:
+        - Enable Redis
+
+  handlers:
+  - name: Restart Redis
+    systemd:
+      name: redis-server
+      state: restarted
+
+  - name: Start Redis
+    systemd:
+      name: redis-server
+      state: started
+
+  - name: Stop Redis
+    systemd:
+      name: redis-server
+      state: stopped
+
+  - name: Enable Redis
+    systemd:
+      name: redis-server
+      enabled: yes
+      
