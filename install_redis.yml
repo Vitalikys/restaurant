@@ -22,9 +22,9 @@
       shell: "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg"
 
     - name: Add Redis repository to sources.list
-      lineinfile:
-        path: /etc/apt/sources.list.d/redis.list
-        line: "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb {{ ansible_distribution_release }} main"
+      apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb {{ ansible_distribution_release }} main"
+        state: present
 
     - name: Update apt cache
       apt:
