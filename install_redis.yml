@@ -19,7 +19,10 @@
         state: directory
 
     - name: Add Redis GPG key
-      shell: "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg"
+      rpm_key:
+        state: present
+        key: https://packages.redis.io/gpg
+# shell: "curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg"
 
     - name: Add Redis repository to sources.list
       apt_repository:
