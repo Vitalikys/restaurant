@@ -1,3 +1,16 @@
+[![Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask&config=win32build&build=last:${params.BRANCH=peex})]
+[Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask&config=win32build&build=last:${params.BRANCH=peex} "http://78.27.236.114:8080/job/peex-flask/")
+[![Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask&config=win32build&build=last:${params.BRANCH=peex})](http://78.27.236.114:8080/job/peex-flask/)
+
+[Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask "http://78.27.236.114:8080/job/peex-flask/")
+
+[![Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask)](http://78.27.236.114:8080/job/peex-flask/)
+
+![Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask)
+[![Build Status](http://78.27.236.114:8080/buildStatus/icon?job=peex-flask)](http://78.27.236.114:8080/job/peex-flask/)
+
+
+
 # Restautant_menu Test Task
 [![version](https://img.shields.io/badge/python-3.10-green)](https://semver.org)
 [![version](https://img.shields.io/badge/Django_Rest_Framework-latest-green)](https://semver.org)
